@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { MainContext } from "./context/MianContext";
+import LinkedInIcon from "./icons/LinkedInIcon";
 
 export default function Sidebar() {
-  const { ShowMenu, setShowMenu } = useContext(MainContext);
+  const { ShowMenu } = useContext(MainContext);
 
   const navItems = [
     {
@@ -66,41 +67,34 @@ export default function Sidebar() {
 
   return (
     <aside className="h-full text-black flex flex-col">
-      <div className="flex items-center justify-between px-3 py-3">
-        <div className="flex items-center gap-2">
-          <button
-            className="text-black/90 hover:text-gray-500 transition"
-            aria-label={ShowMenu ? "Expand sidebar" : "Collapse sidebar"}
-            onClick={() => setShowMenu(!ShowMenu)}
-            title={ShowMenu ? "Expand" : "Collapse"}
-          >
-            {ShowMenu ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="size-6"
-              >
-                <path d="M15.75 19.5 8.25 12l7.5-7.5v15Z" />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="size-6"
-              >
-                <path d="M8.25 4.5 15.75 12l-7.5 7.5V4.5Z" />
-              </svg>
-            )}
-          </button>
-          {!ShowMenu && (
-            <span className="font-semibold tracking-wide">My Dashboard</span>
+      <nav className="flex-1 px-2 py-2">
+        <div>
+          {!ShowMenu ? (
+            <h1 className="text-3xl font-bold">Dashboard</h1>
+          ) : (
+            <svg
+              fill="#000000"
+              version="1.1"
+              id="Capa_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              width="20px"
+              height="20px"
+              viewBox="0 0 495.398 495.398"
+              xml:space="preserve"
+              className="mx-auto"
+            >
+              <g>
+                <g>
+                  <g>
+                    <path d="M487.083,225.514l-75.08-75.08V63.704c0-15.682-12.708-28.391-28.413-28.391c-15.669,0-28.377,12.709-28.377,28.391     v29.941L299.31,37.74c-27.639-27.624-75.694-27.575-103.27,0.05L8.312,225.514c-11.082,11.104-11.082,29.071,0,40.158     c11.087,11.101,29.089,11.101,40.172,0l187.71-187.729c6.115-6.083,16.893-6.083,22.976-0.018l187.742,187.747     c5.567,5.551,12.825,8.312,20.081,8.312c7.271,0,14.541-2.764,20.091-8.312C498.17,254.586,498.17,236.619,487.083,225.514z" />
+                    <path d="M257.561,131.836c-5.454-5.451-14.285-5.451-19.723,0L72.712,296.913c-2.607,2.606-4.085,6.164-4.085,9.877v120.401     c0,28.253,22.908,51.16,51.16,51.16h81.754v-126.61h92.299v126.61h81.755c28.251,0,51.159-22.907,51.159-51.159V306.79     c0-3.713-1.465-7.271-4.085-9.877L257.561,131.836z" />
+                  </g>
+                </g>
+              </g>
+            </svg>
           )}
         </div>
-      </div>
-
-      <nav className="flex-1 px-2 py-2">
         <ul className="space-y-1">
           {navItems.map((item) => (
             <li key={item.key}>
@@ -128,7 +122,7 @@ export default function Sidebar() {
           {!ShowMenu && (
             <span className="text-xs text-white/80">Follow us</span>
           )}
-          <div className={`flex ${ShowMenu ? "hidden" : "flex"}`}>
+          <div className={`flex ${ShowMenu ? "hidden" : "block"}`}>
             <a
               href="#"
               aria-label="Twitter"
@@ -165,14 +159,7 @@ export default function Sidebar() {
               title="LinkedIn"
               className="text-white/90 hover:text-white transition"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="size-5"
-              >
-                <path d="M6.94 6.5a2.19 2.19 0 1 1-4.38 0 2.19 2.19 0 0 1 4.38 0ZM2.81 8.25h3.88v12.5H2.81V8.25Zm7.03 0H13.5v1.71h.05c.65-1.24 2.24-2.55 4.62-2.55 4.94 0 5.85 3.25 5.85 7.48v5.86h-3.88v-5.2c0-1.24-.02-2.84-1.73-2.84-1.74 0-2.01 1.36-2.01 2.75v5.29h-3.88V8.25Z" />
-              </svg>
+              <LinkedInIcon />
             </a>
           </div>
         </div>
