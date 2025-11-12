@@ -1,10 +1,13 @@
 import React from "react";
 import Dashboard from "./Dashboard";
+import { BrowserRouter } from "react-router-dom";
 
 export default function App() {
   return (
     <>
-      <Dashboard />
+      <BrowserRouter>
+        <Dashboard />
+      </BrowserRouter>
     </>
   );
 }

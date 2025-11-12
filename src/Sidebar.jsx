@@ -1,69 +1,68 @@
 import React, { useContext } from "react";
 import { MainContext } from "./context/MianContext";
 import LinkedInIcon from "./icons/LinkedInIcon";
-
+import { Link } from "react-router-dom";
+const navItems = [
+  {
+    key: "",
+    label: "Users",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="size-5"
+      >
+        <path d="M7.5 7.5a3 3 0 1 1 6.001.001A3 3 0 0 1 7.5 7.5Z" />
+        <path d="M2.25 20.118a8.25 8.25 0 0 1 16.5 0 .75.75 0 0 1-.75.882H3a.75.75 0 0 1-.75-.882Z" />
+      </svg>
+    ),
+  },
+  {
+    key: "gallery",
+    label: "Gallery",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="size-5"
+      >
+        <path d="M3.75 4.5A2.25 2.25 0 0 0 1.5 6.75v10.5A2.25 2.25 0 0 0 3.75 19.5h16.5a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 20.25 4.5H3.75Zm.75 11.25 3.75-4.5 3 3.75 4.5-6 4.5 6v2.25H4.5V15.75Z" />
+      </svg>
+    ),
+  },
+  {
+    key: "posts",
+    label: "Posts",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="size-5"
+      >
+        <path d="M6.75 3A2.25 2.25 0 0 0 4.5 5.25v13.5A2.25 2.25 0 0 0 6.75 21h10.5A2.25 2.25 0 0 0 19.5 18.75V8.872a2.25 2.25 0 0 0-.659-1.591l-3.622-3.622A2.25 2.25 0 0 0 13.628 3H6.75Zm6.878 1.5 3.372 3.372a.75.75 0 0 1 .22.53V8.25h-3.75a.75.75 0 0 1-.75-.75V4.5h.908Z" />
+      </svg>
+    ),
+  },
+  {
+    key: "todos",
+    label: "Todos",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="size-5"
+      >
+        <path d="M9 2.25A.75.75 0 0 1 9.75 3v.75H18A2.25 2.25 0 0 1 20.25 6v12A2.25 2.25 0 0 1 18 20.25H6A2.25 2.25 0 0 1 3.75 18V6A2.25 2.25 0 0 1 6 3.75h3V3A.75.75 0 0 1 9 2.25ZM9 6a.75.75 0 0 0 0 1.5h6A.75.75 0 0 0 15 6H9Zm0 3.75a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5H9Zm0 3.75a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5H9Z" />
+      </svg>
+    ),
+  },
+];
 export default function Sidebar() {
   const { ShowMenu } = useContext(MainContext);
-
-  const navItems = [
-    {
-      key: "users",
-      label: "Users",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="size-5"
-        >
-          <path d="M7.5 7.5a3 3 0 1 1 6.001.001A3 3 0 0 1 7.5 7.5Z" />
-          <path d="M2.25 20.118a8.25 8.25 0 0 1 16.5 0 .75.75 0 0 1-.75.882H3a.75.75 0 0 1-.75-.882Z" />
-        </svg>
-      ),
-    },
-    {
-      key: "gallery",
-      label: "Gallery",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="size-5"
-        >
-          <path d="M3.75 4.5A2.25 2.25 0 0 0 1.5 6.75v10.5A2.25 2.25 0 0 0 3.75 19.5h16.5a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 20.25 4.5H3.75Zm.75 11.25 3.75-4.5 3 3.75 4.5-6 4.5 6v2.25H4.5V15.75Z" />
-        </svg>
-      ),
-    },
-    {
-      key: "posts",
-      label: "Posts",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="size-5"
-        >
-          <path d="M6.75 3A2.25 2.25 0 0 0 4.5 5.25v13.5A2.25 2.25 0 0 0 6.75 21h10.5A2.25 2.25 0 0 0 19.5 18.75V8.872a2.25 2.25 0 0 0-.659-1.591l-3.622-3.622A2.25 2.25 0 0 0 13.628 3H6.75Zm6.878 1.5 3.372 3.372a.75.75 0 0 1 .22.53V8.25h-3.75a.75.75 0 0 1-.75-.75V4.5h.908Z" />
-        </svg>
-      ),
-    },
-    {
-      key: "todos",
-      label: "Todos",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="size-5"
-        >
-          <path d="M9 2.25A.75.75 0 0 1 9.75 3v.75H18A2.25 2.25 0 0 1 20.25 6v12A2.25 2.25 0 0 1 18 20.25H6A2.25 2.25 0 0 1 3.75 18V6A2.25 2.25 0 0 1 6 3.75h3V3A.75.75 0 0 1 9 2.25ZM9 6a.75.75 0 0 0 0 1.5h6A.75.75 0 0 0 15 6H9Zm0 3.75a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5H9Zm0 3.75a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5H9Z" />
-        </svg>
-      ),
-    },
-  ];
 
   return (
     <aside className="h-full text-black flex flex-col">
@@ -98,8 +97,8 @@ export default function Sidebar() {
         <ul className="space-y-1">
           {navItems.map((item) => (
             <li key={item.key}>
-              <a
-                href="#"
+              <Link
+                to={item.key}
                 className={`flex items-center gap-3 rounded-md px-2 py-2 hover:bg-white/10 transition ${
                   ShowMenu ? "justify-center" : ""
                 }`}
@@ -107,7 +106,7 @@ export default function Sidebar() {
               >
                 <span className="shrink-0">{item.icon}</span>
                 {!ShowMenu && <span className="text-sm">{item.label}</span>}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
