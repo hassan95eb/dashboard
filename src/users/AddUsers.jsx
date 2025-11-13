@@ -2,100 +2,148 @@ import React, { useId } from "react";
 
 export default function AddUsers() {
   const idBase = useId();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <div className="container mx-auto pt-5 px-2 h-screen flex flex-col justify-center items-center">
-      <main className="border border-gray-300 w-1/3 px-3 py-1 shadow-2xl rounded-lg">
-        <h1 className="text-center font-bold text-2xl border-b-2">Add User</h1>
-        <form className="mt-4">
-          <div className="flex flex-col">
-            <label htmlFor={`${idBase}-name`} className="mb-1">
-              Name and LastName
-            </label>
-            <input
-              type="text"
-              className="border border-gray-400 rounded-lg py-1 px-2 focus-within:outline-none focus-within:border-blue-400"
-              placeholder="Enter name ..."
-              id={`${idBase}-name`}
-            />
-          </div>
-          <div className="flex flex-col">
-            <label htmlFor={`${idBase}-userName`} className="mb-1">
-              Username
-            </label>
-            <input
-              type="text"
-              className="border border-gray-400 rounded-lg py-1 px-2 focus-within:outline-none focus-within:border-blue-400"
-              placeholder="Enter userName..."
-              id={`${idBase}-userName`}
-            />
-          </div>
-          <div className="flex flex-col">
-            <label htmlFor={`${idBase}-email`} className="mb-1">
-              E-mail
-            </label>
-            <input
-              type="email"
-              className="border border-gray-400 rounded-lg py-1 px-2 focus-within:outline-none focus-within:border-blue-400"
-              placeholder="Enter email ..."
-              id={`${idBase}-email`}
-            />
-          </div>
-          <h2>Address</h2>
-          <div className="grid grid-cols-12">
-            <div className="col-span-12 md:col-span-6">
-              <label htmlFor={`${idBase}-city`} className="mb-1">
-                City
+    <div className="min-h-screen bg-slate-100 flex items-center justify-center p-6">
+      <main className="bg-white/95 backdrop-blur w-full max-w-2xl rounded-3xl shadow-[0_25px_50px_-12px_rgba(15,23,42,0.25)] border border-white/60 overflow-hidden">
+        <div className="bg-linear-to-r from-slate-900 via-slate-800 to-slate-900 px-8 py-8">
+          <h1 className="text-3xl md:text-4xl font-semibold text-white tracking-tight">
+            Add New User
+          </h1>
+          <p className="text-slate-200 mt-2 text-sm md:text-base max-w-sm">
+            Fill in the details to create a new user account
+          </p>
+        </div>
+
+        <div className="p-8 space-y-8">
+          <div className="space-y-6">
+            <div className="space-y-3">
+              <label
+                htmlFor={`${idBase}-name`}
+                className="block text-sm font-semibold uppercase tracking-[0.08em] text-slate-500"
+              >
+                Full Name
               </label>
               <input
                 type="text"
-                className="border border-gray-400 rounded-lg py-1 px-2 focus-within:outline-none focus-within:border-blue-400"
-                placeholder="Enter city ..."
-                id={`${idBase}-city`}
+                className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all duration-200 placeholder:text-slate-400"
+                placeholder="John Doe"
+                id={`${idBase}-name`}
               />
             </div>
-            <div className="col-span-12 md:col-span-6">
-              <label htmlFor={`${idBase}-street`} className="mb-1">
-                Street
+
+            <div className="space-y-3">
+              <label
+                htmlFor={`${idBase}-userName`}
+                className="block text-sm font-semibold uppercase tracking-[0.08em] text-slate-500"
+              >
+                Username
               </label>
               <input
                 type="text"
-                className="border border-gray-400 rounded-lg py-1 px-2 focus-within:outline-none focus-within:border-blue-400"
-                placeholder="Enter street ..."
-                id={`${idBase}-street`}
+                className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all duration-200 placeholder:text-slate-400"
+                placeholder="johndoe"
+                id={`${idBase}-userName`}
               />
             </div>
-            <div className="col-span-12 md:col-span-6">
-              <label htmlFor={`${idBase}-suit`} className="mb-1">
-                Suit
+
+            <div className="space-y-3">
+              <label
+                htmlFor={`${idBase}-email`}
+                className="block text-sm font-semibold uppercase tracking-[0.08em] text-slate-500"
+              >
+                Email Address
               </label>
               <input
-                type="text"
-                className="border border-gray-400 rounded-lg py-1 px-2 focus-within:outline-none focus-within:border-blue-400"
-                placeholder="Enter suit ..."
-                id={`${idBase}-suit`}
-              />
-            </div>
-            <div className="col-span-12 md:col-span-6">
-              <label htmlFor={`${idBase}-zipcode`} className="mb-1">
-                Zipcode
-              </label>
-              <input
-                type="text"
-                className="border border-gray-400 rounded-lg py-1 px-2 focus-within:outline-none focus-within:border-blue-400"
-                placeholder="Enter Zipcode ..."
-                id={`${idBase}-zipcode`}
+                type="email"
+                className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all duration-200 placeholder:text-slate-400"
+                placeholder="john.doe@example.com"
+                id={`${idBase}-email`}
               />
             </div>
           </div>
-          <div className="my-2 text-right">
+
+          <div className="pt-2">
+            <h2 className="text-lg font-semibold text-slate-900 mb-6 pb-3 border-b border-slate-200 tracking-tight">
+              Address Information
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <label
+                  htmlFor={`${idBase}-city`}
+                  className="block text-xs font-semibold uppercase tracking-[0.12em] text-slate-500"
+                >
+                  City
+                </label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all duration-200 placeholder:text-slate-400"
+                  placeholder="New York"
+                  id={`${idBase}-city`}
+                />
+              </div>
+
+              <div className="space-y-3">
+                <label
+                  htmlFor={`${idBase}-street`}
+                  className="block text-xs font-semibold uppercase tracking-[0.12em] text-slate-500"
+                >
+                  Street
+                </label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all duration-200 placeholder:text-slate-400"
+                  placeholder="123 Main St"
+                  id={`${idBase}-street`}
+                />
+              </div>
+
+              <div className="space-y-3">
+                <label
+                  htmlFor={`${idBase}-suit`}
+                  className="block text-xs font-semibold uppercase tracking-[0.12em] text-slate-500"
+                >
+                  Suite
+                </label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all duration-200 placeholder:text-slate-400"
+                  placeholder="Apt 4B"
+                  id={`${idBase}-suit`}
+                />
+              </div>
+
+              <div className="space-y-3">
+                <label
+                  htmlFor={`${idBase}-zipcode`}
+                  className="block text-xs font-semibold uppercase tracking-[0.12em] text-slate-500"
+                >
+                  Zip Code
+                </label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all duration-200 placeholder:text-slate-400"
+                  placeholder="10001"
+                  id={`${idBase}-zipcode`}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-2">
             <button
-              type="submit"
-              className="px-2 py-1 bg-green-600 text-white rounded hover:bg-green-800 shadow-lg"
+              onClick={handleSubmit}
+              className="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3.5 px-6 rounded-2xl shadow-[0_15px_30px_-12px_rgba(15,23,42,0.45)] hover:shadow-[0_18px_35px_-12px_rgba(15,23,42,0.55)] transition-all duration-200 ease-out focus:outline-none focus:ring-4 focus:ring-slate-900/20 focus:ring-offset-2 focus:ring-offset-white active:scale-[0.99]"
             >
-              Submit
+              Create User Account
             </button>
           </div>
-        </form>
+        </div>
       </main>
     </div>
   );

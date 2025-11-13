@@ -6,7 +6,7 @@ export default function Dashboard() {
   const [ShowMenu, setShowMenu] = useState(false);
   return (
     <MainContext.Provider value={{ ShowMenu, setShowMenu }}>
-      <div className="w-full h-screen flex">
+      <div className="w-full h-screen flex overflow-hidden">
         <div
           className={`${
             ShowMenu ? "w-16" : "w-56"
