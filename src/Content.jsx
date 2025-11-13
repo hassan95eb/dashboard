@@ -11,7 +11,9 @@ export default function Content() {
     <div className="w-full h-full bg-indigo-50">
       <Routes>
         <Route path="/" element={<Users />} />
-        <Route path="/users/addUser" element={<AddUsers />} />
+        <Route path="/users/add" element={<AddUsers />}>
+          <Route path=":userId" />
+        </Route>
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/posts" element={<Posts />} />
         <Route path="/todos" element={<Todos />} />

@@ -1,4 +1,5 @@
 import React, { useId } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function AddUsers() {
   const idBase = useId();
@@ -6,16 +7,18 @@ export default function AddUsers() {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-
+  const { userId } = useParams();
+  console.log(userId);
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center p-6">
       <main className="bg-white/95 backdrop-blur w-full max-w-2xl rounded-3xl shadow-[0_25px_50px_-12px_rgba(15,23,42,0.25)] border border-white/60 overflow-hidden">
         <div className="bg-linear-to-r from-slate-900 via-slate-800 to-slate-900 px-8 py-8">
           <h1 className="text-3xl md:text-4xl font-semibold text-white tracking-tight">
-            Add New User
+            {userId ? "Edit User" : "Add New User"}
           </h1>
           <p className="text-slate-200 mt-2 text-sm md:text-base max-w-sm">
-            Fill in the details to create a new user account
+            Fill in the details
           </p>
         </div>
 
@@ -135,10 +138,20 @@ export default function AddUsers() {
             </div>
           </div>
 
-          <div className="pt-2">
+          <div className="pt-2 space-y-3 md:space-y-0 md:flex md:items-center md:gap-3">
             <button
+              type="button"
+              onClick={() => {
+                navigate(-1);
+              }}
+              className="w-full md:w-auto px-6 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-700 font-medium shadow-sm hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-slate-900/10 focus:ring-offset-2 focus:ring-offset-white"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
               onClick={handleSubmit}
-              className="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3.5 px-6 rounded-2xl shadow-[0_15px_30px_-12px_rgba(15,23,42,0.45)] hover:shadow-[0_18px_35px_-12px_rgba(15,23,42,0.55)] transition-all duration-200 ease-out focus:outline-none focus:ring-4 focus:ring-slate-900/20 focus:ring-offset-2 focus:ring-offset-white active:scale-[0.99]"
+              className="w-full md:flex-1 bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3.5 px-6 rounded-2xl shadow-[0_15px_30px_-12px_rgba(15,23,42,0.45)] hover:shadow-[0_18px_35px_-12px_rgba(15,23,42,0.55)] transition-all duration-200 ease-out focus:outline-none focus:ring-4 focus:ring-slate-900/20 focus:ring-offset-2 focus:ring-offset-white active:scale-[0.99]"
             >
               Create User Account
             </button>

@@ -26,7 +26,7 @@ export default function Users() {
             />
 
             <Link
-              to="/users/addUser"
+              to="/users/add"
               className="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-900 text-white px-5 py-3 text-sm font-medium shadow-[0_18px_30px_-15px_rgba(15,23,42,0.55)] hover:bg-slate-800 hover:shadow-[0_20px_35px_-15px_rgba(15,23,42,0.65)] transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-slate-900/20 focus:ring-offset-2 focus:ring-offset-white"
             >
               <HiPlusSm color="#fff" size={24} />
@@ -65,9 +65,11 @@ export default function Users() {
                   </td>
                   <td className="px-4 py-4">
                     <div className="flex justify-center items-center gap-3">
-                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-800 transition-colors duration-150 cursor-pointer">
-                        <FaEdit size={18} />
-                      </span>
+                      <Link to="/users/add/2" replace>
+                        <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-800 transition-colors duration-150 cursor-pointer">
+                          <FaEdit size={18} />
+                        </span>
+                      </Link>
                       <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-rose-50 text-rose-500 hover:bg-rose-100 hover:text-rose-600 transition-colors duration-150 cursor-pointer">
                         <MdDelete size={18} />
                       </span>
