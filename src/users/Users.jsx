@@ -2,6 +2,7 @@ import React from "react";
 import { HiPlusSm } from "react-icons/hi";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 export default function Users() {
   return (
@@ -13,9 +14,13 @@ export default function Users() {
           placeholder="Search..."
           className="border rounded-lg border-gray-500 px-2 py-1 focus-within:border-blue-300 focus-within:outline-none w-96 shadow-lg"
         />
-        <button className="bg-green-500 rounded px-2 py-1">
+
+        <Link
+          to="/users/addUser"
+          className="bg-green-500 rounded px-2 py-1 text-white"
+        >
           <HiPlusSm color="#fff" size={25} />
-        </button>
+        </Link>
       </div>
       <table className="table-fixed bg-gray-300 w-full mt-3 rounded-lg">
         <thead className="border-b ">
