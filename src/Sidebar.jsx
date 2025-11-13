@@ -65,23 +65,25 @@ export default function Sidebar() {
   const { ShowMenu } = useContext(MainContext);
 
   return (
-    <aside className="h-full text-black flex flex-col">
-      <nav className="flex-1 px-2 py-2">
-        <div>
+    <aside className="h-full flex flex-col bg-white/80 text-slate-600">
+      <nav className="flex-1 px-4 py-6 space-y-6">
+        <div className="flex items-center justify-center">
           {!ShowMenu ? (
-            <h1 className="text-3xl font-bold">Dashboard</h1>
+            <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+              Dashboard
+            </h1>
           ) : (
             <svg
-              fill="#000000"
+              fill="#0f172a"
               version="1.1"
               id="Capa_1"
               xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink"
-              width="20px"
-              height="20px"
+              width="24px"
+              height="24px"
               viewBox="0 0 495.398 495.398"
               xml:space="preserve"
-              className="mx-auto"
+              className="drop-shadow-sm"
             >
               <g>
                 <g>
@@ -94,45 +96,53 @@ export default function Sidebar() {
             </svg>
           )}
         </div>
-        <ul className="space-y-1">
+        <ul className="space-y-2">
           {navItems.map((item) => (
             <li key={item.key}>
               <Link
                 to={item.key}
-                className={`flex items-center gap-3 rounded-md px-2 py-2 hover:bg-white/10 transition ${
+                className={`group relative flex items-center gap-3 rounded-2xl border border-transparent px-3 py-3 text-sm font-medium text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-200 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-200 ${
                   ShowMenu ? "justify-center" : ""
                 }`}
                 title={ShowMenu ? item.label : undefined}
               >
-                <span className="shrink-0">{item.icon}</span>
-                {!ShowMenu && <span className="text-sm">{item.label}</span>}
+                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-100 text-slate-500 shadow-sm transition-all duration-200 group-hover:bg-slate-900 group-hover:text-white group-hover:shadow-[0_10px_18px_-12px_rgba(15,23,42,0.6)]">
+                  {item.icon}
+                </span>
+                {!ShowMenu && (
+                  <span className="text-sm font-medium text-slate-600 transition-colors duration-200 group-hover:text-slate-900">
+                    {item.label}
+                  </span>
+                )}
+                {ShowMenu && (
+                  <span className="pointer-events-none absolute left-full ml-4 rounded-xl bg-slate-900 px-3 py-1 text-xs font-semibold text-white opacity-0 shadow-lg transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-1">
+                    {item.label}
+                  </span>
+                )}
               </Link>
             </li>
           ))}
         </ul>
       </nav>
 
-      <div className="mt-auto px-3 py-3">
+      <div className="mt-auto px-4 py-6">
         <div
-          className={`flex ${
+          className={`flex items-center ${
             ShowMenu ? "justify-center" : "justify-between"
-          } items-center`}
+          }`}
         >
-          {!ShowMenu && (
-            <span className="text-xs text-white/80">Follow us</span>
-          )}
-          <div className={`flex ${ShowMenu ? "hidden" : "block"}`}>
+          <div className={`${ShowMenu ? "hidden" : "flex"} items-center gap-3`}>
             <a
               href="#"
               aria-label="Twitter"
               title="Twitter"
-              className="text-white/90 hover:text-white transition"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white hover:shadow-[0_12px_20px_-10px_rgba(15,23,42,0.45)]"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="size-5"
+                className="size-4"
               >
                 <path d="M8.29 20c7.547 0 11.675-6.253 11.675-11.675 0-.177 0-.353-.012-.528A8.343 8.343 0 0 0 22 5.922a8.19 8.19 0 0 1-2.357.646 4.117 4.117 0 0 0 1.804-2.27 8.224 8.224 0 0 1-2.606.996 4.107 4.107 0 0 0-6.993 3.743 11.654 11.654 0 0 1-8.457-4.287 4.106 4.106 0 0 0 1.27 5.479A4.073 4.073 0 0 1 3.2 9.71v.052a4.106 4.106 0 0 0 3.292 4.025 4.095 4.095 0 0 1-1.853.07 4.108 4.108 0 0 0 3.834 2.85A8.233 8.233 0 0 1 2 18.407a11.616 11.616 0 0 0 6.29 1.84Z" />
               </svg>
@@ -141,13 +151,13 @@ export default function Sidebar() {
               href="#"
               aria-label="GitHub"
               title="GitHub"
-              className="text-white/90 hover:text-white transition"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white hover:shadow-[0_12px_20px_-10px_rgba(15,23,42,0.45)]"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="size-5"
+                className="size-4"
               >
                 <path d="M12 .75C5.787.75.75 5.787.75 12c0 5.003 3.243 9.236 7.737 10.735.566.101.774-.246.774-.546 0-.27-.01-.985-.015-1.935-3.146.684-3.81-1.517-3.81-1.517-.516-1.31-1.26-1.66-1.26-1.66-1.03-.704.078-.69.078-.69 1.14.08 1.741 1.172 1.741 1.172 1.012 1.735 2.655 1.234 3.303.943.103-.733.396-1.234.721-1.518-2.512-.286-5.153-1.256-5.153-5.589 0-1.236.441-2.247 1.165-3.037-.117-.286-.504-1.438.11-2.997 0 0 .948-.304 3.11 1.16a10.82 10.82 0 0 1 2.833-.381c.962.005 1.93.13 2.835.381 2.16-1.464 3.107-1.16 3.107-1.16.616 1.559.23 2.711.113 2.997.725.79 1.163 1.801 1.163 3.037 0 4.343-2.646 5.3-5.165 5.58.405.348.768 1.037.768 2.092 0 1.51-.014 2.728-.014 3.099 0 .302.204.654.78.543C20.01 21.232 23.25 17 23.25 12c0-6.213-5.037-11.25-11.25-11.25Z" />
               </svg>
@@ -156,7 +166,7 @@ export default function Sidebar() {
               href="#"
               aria-label="LinkedIn"
               title="LinkedIn"
-              className="text-white/90 hover:text-white transition"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white hover:shadow-[0_12px_20px_-10px_rgba(15,23,42,0.45)]"
             >
               <LinkedInIcon />
             </a>

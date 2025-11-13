@@ -6,20 +6,20 @@ export default function Dashboard() {
   const [ShowMenu, setShowMenu] = useState(false);
   return (
     <MainContext.Provider value={{ ShowMenu, setShowMenu }}>
-      <div className="w-full h-screen flex overflow-hidden">
+      <div className="w-full h-screen bg-slate-100 flex overflow-hidden">
         <div
           className={`${
             ShowMenu ? "w-16" : "w-56"
-          } bg-blue-100 transition-all duration-300 border-r border-gray-200`}
+          } bg-white/90 backdrop-blur border-r border-slate-200/70 shadow-[0_25px_50px_-20px_rgba(15,23,42,0.35)] transition-all duration-300`}
         >
           <Sidebar />
         </div>
-        <div className="w-full">
+        <div className="relative flex-1">
           <button
             onClick={() => setShowMenu(!ShowMenu)}
             aria-label="Toggle sidebar"
             title={ShowMenu ? "Expand sidebar" : "Collapse sidebar"}
-            className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 active:bg-gray-100 transition absolute"
+            className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-3 text-sm text-slate-600 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 ease-out absolute top-6 left-6"
           >
             {ShowMenu ? (
               <svg
@@ -42,7 +42,9 @@ export default function Dashboard() {
             )}
           </button>
 
-          <Content />
+          <div className="h-full overflow-y-auto px-6 md:px-10 py-10">
+            <Content />
+          </div>
         </div>
       </div>
     </MainContext.Provider>
