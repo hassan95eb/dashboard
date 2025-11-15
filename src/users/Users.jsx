@@ -8,6 +8,7 @@ import axios from "axios";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
+
   const handleDelelte = (id) => {
     swal({
       title: `Are you sure deleting ${id}?`,
@@ -17,14 +18,25 @@ export default function Users() {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        swal("Poof! Your imaginary file has been deleted!", {
-          icon: "success",
-        });
+        axios
+          .delete(`https://jsonplaceholder.typicode.com/users/${id}`)
+          .then((res) => {
+            if (res.status == 200) {
+              const newUsers = users.filter((u) => u.id != id);
+              setUsers(newUsers);
+              console.log(res);
+              swal("Poof! Your imaginary file has been deleted!", {
+                icon: "success",
+              });
+            }
+          })
+          .catch((err) => console.log(err));
       } else {
         swal("Your imaginary file is safe!");
       }
     });
   };
+
   useEffect(() => {
     axios
       .get("https://jsonplaceholder.typicode.com/users")
@@ -96,7 +108,7 @@ export default function Users() {
                       </td>
                       <td className="px-4 py-4">
                         <div className="flex justify-center items-center gap-3">
-                          <Link to="/users/add/2" replace>
+                          <Link to={`/users/add/${t.id}`} replace>
                             <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-800 transition-colors duration-150 cursor-pointer">
                               <FaEdit size={18} />
                             </span>
