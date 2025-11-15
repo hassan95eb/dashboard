@@ -1,10 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { HiPlusSm } from "react-icons/hi";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
+import axios from "axios";
 
 export default function Users() {
+  const [users, setUsers] = useState([]);
+  const handleDelelte = (id) => {
+    swal({
+      title: `Are you sure deleting ${id}?`,
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
+  };
+  useEffect(() => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/users")
+      .then((res) => setUsers(res.data))
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div className="min-h-screen bg-slate-100 py-12 px-6">
       <div className="max-w-5xl mx-auto space-y-8">
@@ -50,32 +76,42 @@ export default function Users() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
-                <tr className="hover:bg-slate-50 transition-colors duration-150">
-                  <td className="px-4 py-4 text-sm font-medium text-slate-500">
-                    1
-                  </td>
-                  <td className="px-4 py-4 text-sm text-slate-700">
-                    Hassan Amini
-                  </td>
-                  <td className="px-4 py-4 text-sm text-slate-500">
-                    carefree95
-                  </td>
-                  <td className="px-4 py-4 text-sm text-slate-500">
-                    hassanaminidev@gmail.com
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="flex justify-center items-center gap-3">
-                      <Link to="/users/add/2" replace>
-                        <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-800 transition-colors duration-150 cursor-pointer">
-                          <FaEdit size={18} />
-                        </span>
-                      </Link>
-                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-rose-50 text-rose-500 hover:bg-rose-100 hover:text-rose-600 transition-colors duration-150 cursor-pointer">
-                        <MdDelete size={18} />
-                      </span>
-                    </div>
-                  </td>
-                </tr>
+                {users.map((t) => {
+                  return (
+                    <tr
+                      key={t.id}
+                      className="hover:bg-slate-50 transition-colors duration-150"
+                    >
+                      <td className="px-4 py-4 text-sm font-medium text-slate-500">
+                        {t.id}
+                      </td>
+                      <td className="px-4 py-4 text-sm text-slate-700">
+                        {t.name}
+                      </td>
+                      <td className="px-4 py-4 text-sm text-slate-500">
+                        {t.username}
+                      </td>
+                      <td className="px-4 py-4 text-sm text-slate-500">
+                        {t.email}
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="flex justify-center items-center gap-3">
+                          <Link to="/users/add/2" replace>
+                            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-800 transition-colors duration-150 cursor-pointer">
+                              <FaEdit size={18} />
+                            </span>
+                          </Link>
+                          <span
+                            onClick={() => handleDelelte(t.id)}
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-rose-50 text-rose-500 hover:bg-rose-100 hover:text-rose-600 transition-colors duration-150 cursor-pointer"
+                          >
+                            <MdDelete size={18} />
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
