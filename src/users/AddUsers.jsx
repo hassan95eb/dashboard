@@ -1,8 +1,10 @@
 import axios from "axios";
-import React, { useId, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function AddUsers() {
+  const { userId } = useParams();
+  const navigate = useNavigate();
   const idBase = useId();
   const [data, setData] = useState({
     name: "",
@@ -19,15 +21,46 @@ export default function AddUsers() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(data);
-    axios
-      .post("https://jsonplaceholder.typicode.com/users", data)
-      .then((res) => {
-        console.log(res);
-        setData();
-      });
+    if (!userId) {
+      axios
+        .post("https://jsonplaceholder.typicode.com/users", data)
+        .then((res) => {
+          console.log(res);
+          setData();
+        });
+    } else {
+      axios
+        .patch(`https://jsonplaceholder.typicode.com/users/${userId}`, data)
+        .then((res) => {
+          console.log(res.status);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
-  const { userId } = useParams();
-  const navigate = useNavigate();
+  useEffect(() => {
+    if (userId) {
+      axios
+        .get(`https://jsonplaceholder.typicode.com/users/${userId}`)
+        .then((res) => {
+          if (res.status == 200) {
+            setData({
+              name: res.data.name,
+              username: res.data.username,
+              email: res.data.email,
+              address: {
+                street: res.data.address.street,
+                suite: res.data.address.suite,
+                city: res.data.address.city,
+                zipcode: res.data.address.zipcode,
+              },
+            });
+          }
+        });
+    }
+  }, [userId]);
+
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center p-6">
       <main className="bg-white/95 backdrop-blur w-full max-w-2xl rounded-3xl shadow-[0_25px_50px_-12px_rgba(15,23,42,0.25)] border border-white/60 overflow-hidden">
