@@ -1,14 +1,32 @@
-import React, { useId } from "react";
+import axios from "axios";
+import React, { useId, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function AddUsers() {
   const idBase = useId();
+  const [data, setData] = useState({
+    name: "",
+    username: "",
+    email: "",
+    address: {
+      street: "",
+      suite: "",
+      city: "",
+      zipcode: "",
+    },
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(data);
+    axios
+      .post("https://jsonplaceholder.typicode.com/users", data)
+      .then((res) => {
+        console.log(res);
+        setData();
+      });
   };
   const { userId } = useParams();
-  console.log(userId);
   const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center p-6">
@@ -36,6 +54,8 @@ export default function AddUsers() {
                 className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all duration-200 placeholder:text-slate-400"
                 placeholder="John Doe"
                 id={`${idBase}-name`}
+                value={data.name}
+                onChange={(e) => setData({ ...data, name: e.target.value })}
               />
             </div>
 
@@ -51,6 +71,8 @@ export default function AddUsers() {
                 className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all duration-200 placeholder:text-slate-400"
                 placeholder="johndoe"
                 id={`${idBase}-userName`}
+                value={data.username}
+                onChange={(e) => setData({ ...data, username: e.target.value })}
               />
             </div>
 
@@ -66,6 +88,8 @@ export default function AddUsers() {
                 className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all duration-200 placeholder:text-slate-400"
                 placeholder="john.doe@example.com"
                 id={`${idBase}-email`}
+                value={data.email}
+                onChange={(e) => setData({ ...data, email: e.target.value })}
               />
             </div>
           </div>
@@ -88,6 +112,13 @@ export default function AddUsers() {
                   className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all duration-200 placeholder:text-slate-400"
                   placeholder="New York"
                   id={`${idBase}-city`}
+                  value={data.address.city}
+                  onChange={(e) =>
+                    setData({
+                      ...data,
+                      address: { ...data.address, city: e.target.value },
+                    })
+                  }
                 />
               </div>
 
@@ -103,12 +134,19 @@ export default function AddUsers() {
                   className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all duration-200 placeholder:text-slate-400"
                   placeholder="123 Main St"
                   id={`${idBase}-street`}
+                  value={data.address.street}
+                  onChange={(e) =>
+                    setData({
+                      ...data,
+                      address: { ...data.address, street: e.target.value },
+                    })
+                  }
                 />
               </div>
 
               <div className="space-y-3">
                 <label
-                  htmlFor={`${idBase}-suit`}
+                  htmlFor={`${idBase}-suite`}
                   className="block text-xs font-semibold uppercase tracking-[0.12em] text-slate-500"
                 >
                   Suite
@@ -117,7 +155,14 @@ export default function AddUsers() {
                   type="text"
                   className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all duration-200 placeholder:text-slate-400"
                   placeholder="Apt 4B"
-                  id={`${idBase}-suit`}
+                  id={`${idBase}-suite`}
+                  value={data.address.suite}
+                  onChange={(e) =>
+                    setData({
+                      ...data,
+                      address: { ...data.address, suite: e.target.value },
+                    })
+                  }
                 />
               </div>
 
@@ -133,6 +178,13 @@ export default function AddUsers() {
                   className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all duration-200 placeholder:text-slate-400"
                   placeholder="10001"
                   id={`${idBase}-zipcode`}
+                  value={data.address.zipcode}
+                  onChange={(e) =>
+                    setData({
+                      ...data,
+                      address: { ...data.address, zipcode: e.target.value },
+                    })
+                  }
                 />
               </div>
             </div>
