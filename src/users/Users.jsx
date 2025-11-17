@@ -8,6 +8,7 @@ import axios from "axios";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
+  const [mainUser, setMainUser] = useState([]);
 
   const handleDelelte = (id) => {
     swal({
@@ -40,9 +41,16 @@ export default function Users() {
   useEffect(() => {
     axios
       .get("https://jsonplaceholder.typicode.com/users")
-      .then((res) => setUsers(res.data))
+      .then((res) => {
+        setUsers(res.data);
+        setMainUser(res.data);
+      })
       .catch((err) => console.log(err));
   }, []);
+  const handleSearch = (e) => {
+    console.log(e.target.value, "search");
+    setUsers(mainUser.filter((t) => t.name.includes(e.target.value)));
+  };
   return (
     <div className="min-h-screen bg-slate-100 py-12 px-6">
       <div className="max-w-5xl mx-auto space-y-8">
@@ -61,6 +69,7 @@ export default function Users() {
               type="text"
               placeholder="Search users..."
               className="w-full md:max-w-sm px-4 py-3 rounded-2xl border border-slate-200 bg-white shadow-sm text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 transition-all duration-200"
+              onChange={handleSearch}
             />
 
             <Link
