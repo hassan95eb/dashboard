@@ -227,7 +227,7 @@ export default function AddUsers() {
             <button
               type="button"
               onClick={() => {
-                navigate(-1);
+                navigate("/");
               }}
               className="w-full md:w-auto px-6 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-700 font-medium shadow-sm hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-slate-900/10 focus:ring-offset-2 focus:ring-offset-white"
             >
